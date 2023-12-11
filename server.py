@@ -19,6 +19,20 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 
         data = conn.recv(len)
 
-# Load the received object, expect it to be of type user.User
-obj = pickle.loads(data)
-print(f"Received new user {obj.username}.")
+        # Load the received object, expect it to be of type user.User
+        obj = pickle.loads(data)
+        print(f"Connection received by user {obj.username}.")
+
+        while True:
+            len = int.from_bytes(conn.recv(4), "little")
+            if len == 0:
+                print("Closing connection")
+                break
+
+            data = conn.recv(len)
+            print(f"[recv] {data.decode('utf-8')}")
+            if not data:
+                print("Closing connection")
+                break
+
+            conn.sendall(data)

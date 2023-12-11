@@ -15,6 +15,6 @@ p = pickle.dumps(yeet)
 yeet2 = MaliciousClass()
 p = pickle.dumps(yeet2)
 
-# Expect GoodClass and calls foo() on it
+# Expect GoodClass and calls foo() on it without validating the class
 heeg = pickle.loads(p)
 heeg.foo()

@@ -3,6 +3,11 @@ A simple example of exploiting CWE-502 in Python using the pickle serialization 
 
 [CWE-502](https://cwe.mitre.org/data/definitions/502.html)
 
+### How To Run
+ - On one terminal: `python3 server.py`
+ - On another terminal: `python3 client.py`
+ - If you instead run `python3 evil_client.py` then malicious serialized data is sent to the server. This will cause "malware" to be curled to the box.
+
 ### Idea
  - `server.py` runs a server that listens for `client.py` connections.
  - `client.py` asks you for a username before pickling a `user.User` object to send it to the open server. It then turns into a basic echo client that repeats what you tell it.
